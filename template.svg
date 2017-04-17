@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" width="310" height="116">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+    </style>
+
+    <g id="active">
+      <circle cx="7" cy="7" r="7px" fill="#0d0"/>
+      <text text-anchor="left" x="19" y="13" font-size="14px" font-family="Roboto">In active development</text>
+    </g>
+
+    <g id="bugsonly">
+      <circle cx="7" cy="7" r="7px" fill="#dd0"/>
+      <text text-anchor="left" x="19" y="13" font-size="14px" font-family="Roboto">Bugfixes only</text>
+    </g>
+
+    <g id="unmaintained">
+      <circle cx="7" cy="7" r="7px" fill="#d00"/>
+      <text text-anchor="left" x="19" y="13" font-size="14px" font-family="Roboto">No longer maintained</text>
+    </g>
+
+    <filter id="dropshadow" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/> <!-- stdDeviation is how much to blur -->
+      <feOffset dx="0" dy="2" result="offsetblur"/> <!-- how much to offset -->
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge> 
+        <feMergeNode/> <!-- this contains the offset blurred image -->
+        <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g>
+    <path d="M5 5 L305 5 L305 111 L5 111 L5 5 Z" opacity="1" fill-opacity="1" fill="#fff" stroke="#333" stroke-width="1" stroke-opacity=".2" style="filter:url(#dropshadow)"></path>
+    <text text-anchor="middle" x="160" y="25" font-family="Roboto" font-size="19px" font-weight="700" color="#333">Project status</text>
+    <path d="M10 35 L300 35 Z" opacity="1" fill-opacity="0" stroke="#333" stroke-width="1px" stroke-opacity="1"></path>
+
+    <text text-anchor="left" x="20" y="62" font-family="Roboto" font-size="14px" font-weight="700">Project:</text>
+    <text text-anchor="left" x="110" y="62" font-family="Roboto" font-size="14px">{{env `PROJECT_NAME`}}</text>
+
+    <text text-anchor="left" x="20" y="82" font-family="Roboto" font-size="14px" font-weight="700">Status:</text>
+    <use x="110" y="70" xlink:href="#{{env `STATUS`}}"/>
+
+    <text text-anchor="left" x="20" y="102" font-family="Roboto" font-size="14px" font-weight="700">Changed:</text>
+    <text text-anchor="left" x="110" y="102" font-family="Roboto" font-size="14px">{{now `2006-01-02`}}</text>
+  </g>
+
+</svg>

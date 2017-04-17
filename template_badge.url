@@ -1,0 +1,7 @@
+{{- if eq (env `STATUS`) "active" -}}
+https://badges.fyi/static/Project%20Status/In%20active%20development/0d0
+{{- else if eq (env `STATUS`) "bugsonly" -}}
+https://badges.fyi/static/Project%20Status/Bugfixes%20only/dd0
+{{- else if eq (env `STATUS`) "unmaintained" -}}
+https://badges.fyi/static/Project%20Status/No%20longer%20maintained/d00
+{{- end -}}
